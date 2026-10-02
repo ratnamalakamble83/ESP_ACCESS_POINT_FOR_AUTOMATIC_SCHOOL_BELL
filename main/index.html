@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ESP32 Alarm Clock</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f0f4f8;
+}
+
+.container{
+    width:95%;
+    max-width:420px;
+    margin:20px auto;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+h1{
+    text-align:center;
+    color:#1565C0;
+    margin-bottom:20px;
+}
+
+.time{
+    font-size:48px;
+    text-align:center;
+    color:#0D47A1;
+    font-weight:bold;
+}
+
+.date{
+    text-align:center;
+    color:#666;
+    margin-top:10px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input[type=time],
+input[type=text]{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:18px;
+
+}
+
+.switch{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:20px;
+
+}
+
+.switch input{
+
+width:25px;
+height:25px;
+
+}
+
+button{
+
+width:100%;
+padding:14px;
+margin-top:20px;
+font-size:18px;
+background:#1565C0;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#0D47A1;
+
+}
+
+.status{
+
+margin-top:15px;
+font-size:18px;
+text-align:center;
+font-weight:bold;
+color:green;
+
+}
+
+.footer{
+
+text-align:center;
+margin-top:20px;
+font-size:14px;
+color:#888;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>ESP32 Alarm Clock</h1>
+
+<div class="time" id="clock">
+00:00:00
+</div>
+
+<div class="date" id="date">
+Loading...
+</div>
+
+</div>
+
+<div class="card">
+
+<label>Alarm Time</label>
+
+<input type="time" id="alarmTime">
+
+<label>Alarm Name</label>
+
+<input
+type="text"
+id="alarmName"
+placeholder="Morning Alarm">
+
+<div class="switch">
+
+<span>Enable Alarm</span>
+
+<input
+type="checkbox"
+id="alarmEnable">
+
+</div>
+
+<button onclick="saveAlarm()">
+
+Save Alarm
+
+</button>
+
+<div
+class="status"
+id="status">
+
+Alarm Disabled
+
+</div>
+
+</div>
+
+<div class="footer">
+
+ESP32 Alarm Clock
+
+</div>
+
+</div>
+
+<script>
+
+//----------------------------
+// Update Clock from ESP32
+//----------------------------
+
+function updateClock()
+{
+
+fetch('/time')
+
+.then(response=>response.json())
+
+.then(data=>{
+
+document.getElementById("clock").innerHTML=data.time;
+
+document.getElementById("date").innerHTML=data.date;
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+});
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+//----------------------------
+// Save Alarm
+//----------------------------
+
+function saveAlarm()
+{
+
+let time=document.getElementById("alarmTime").value;
+
+let name=document.getElementById("alarmName").value;
+
+let enable=document.getElementById("alarmEnable").checked?1:0;
+
+fetch(`/save?time=${time}&name=${name}&enable=${enable}`)
+
+.then(response=>response.text())
+
+.then(msg=>{
+
+alert(msg);
+
+if(enable)
+
+document.getElementById("status").innerHTML="Alarm Enabled";
+
+else
+
+document.getElementById("status").innerHTML="Alarm Disabled";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

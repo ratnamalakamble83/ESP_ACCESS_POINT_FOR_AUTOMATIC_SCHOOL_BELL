@@ -1,0 +1,73 @@
+[1/5] cmd.exe /C "cd /D C:\Users\Admin\workspace\ESP_ACCESS_POINT_FOR_AUTOMATIC_SCHOOL_BELL\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/Admin/workspace/ESP_ACCESS_POINT_FOR_AUTOMATIC_SCHOOL_BELL/build/partition_table/partition-table.bin C:/Users/Admin/workspace/ESP_ACCESS_POINT_FOR_AUTOMATIC_SCHOOL_BELL/build/app-template.bin"
+app-template.bin binary size 0xdb4d0 bytes. Smallest app partition is 0x100000 bytes. 0x24b30 bytes (14%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Users\Admin\workspace\ESP_ACCESS_POINT_FOR_AUTOMATIC_SCHOOL_BELL\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Users/Admin/workspace/ESP_ACCESS_POINT_FOR_AUTOMATIC_SCHOOL_BELL/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[2/3] cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.3.1\components\esptool_py && C:\Espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=C:/Espressif/frameworks/esp-idf-v5.3.1 -D SERIAL_TOOL=C:/Espressif/python_env/idf5.3_py3.11_env/Scripts/python.exe;;C:/Espressif/frameworks/esp-idf-v5.3.1/components/esptool_py/esptool/esptool.py;--chip;esp32 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=esptool.py --chip esp32 -p COM3 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 app-template.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.8.1
+Serial port COM3
+Connecting......
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: d4:e9:f4:78:69:28
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x000ebfff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 26752 bytes to 16360...
+Writing at 0x00001000... (100 %)
+Wrote 26752 bytes (16360 compressed) at 0x00001000 in 0.5 seconds (effective 402.0 kbit/s)...
+Hash of data verified.
+Compressed 898256 bytes to 558436...
+Writing at 0x00010000... (2 %)
+Writing at 0x0001d6f5... (5 %)
+Writing at 0x00028b5d... (8 %)
+Writing at 0x0002d8d4... (11 %)
+Writing at 0x0003510d... (14 %)
+Writing at 0x0003ee2e... (17 %)
+Writing at 0x00044824... (20 %)
+Writing at 0x0004a9a5... (22 %)
+Writing at 0x00050734... (25 %)
+Writing at 0x0005642c... (28 %)
+Writing at 0x0005c3a2... (31 %)
+Writing at 0x00061d20... (34 %)
+Writing at 0x0006801e... (37 %)
+Writing at 0x0006d1da... (40 %)
+Writing at 0x00072846... (42 %)
+Writing at 0x00077a63... (45 %)
+Writing at 0x0007d185... (48 %)
+Writing at 0x00082821... (51 %)
+Writing at 0x00088012... (54 %)
+Writing at 0x0008de56... (57 %)
+Writing at 0x000937a2... (60 %)
+Writing at 0x00099374... (62 %)
+Writing at 0x0009f09e... (65 %)
+Writing at 0x000a4940... (68 %)
+Writing at 0x000aa692... (71 %)
+Writing at 0x000b0b58... (74 %)
+Writing at 0x000b6503... (77 %)
+Writing at 0x000bc3b7... (80 %)
+Writing at 0x000c5959... (82 %)
+Writing at 0x000ce06e... (85 %)
+Writing at 0x000d3d11... (88 %)
+Writing at 0x000d9a99... (91 %)
+Writing at 0x000df696... (94 %)
+Writing at 0x000e55af... (97 %)
+Writing at 0x000eab43... (100 %)
+Wrote 898256 bytes (558436 compressed) at 0x00010000 in 13.7 seconds (effective 522.9 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.0 seconds (effective 1370.2 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=C:/Users/Admin/workspace/ESP_ACCESS_POINT_FOR_AUTOMATIC_SCHOOL_BELL/build -P C:/Espressif/frameworks/esp-idf-v5.3.1/components/esptool_py/run_serial_tool.cmake"
